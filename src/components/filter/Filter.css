@@ -1,0 +1,12 @@
+.searchInput {
+  width: 200px;
+  margin-top: 15px;
+  height: 12px;
+  padding: 10px;
+  font-size: medium;
+  border: none;
+  border-radius: 5%;
+}
+.pseudo {
+  font-weight: 700;
+}

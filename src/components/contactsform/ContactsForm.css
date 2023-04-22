@@ -1,0 +1,40 @@
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.contactForm label {
+  font-weight: 700;
+  display: flex;
+}
+
+.contactForm input {
+  width: 200px;
+  height: 12px;
+  padding: 10px;
+  font-size: medium;
+  border: none;
+  border-radius: 5%;
+}
+
+.contactForm .ContactBtn {
+  width: 150px;
+  height: 30px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 6px;
+  background-color: #90ee90;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.contactForm .ContactBtn:active {
+  background-color: gold;
+  border-color: coral;
+}
+.contactForm .ContactBtn:hover {
+  background-color: aquamarine;
+}
