@@ -5,6 +5,8 @@ import ContactList from './contactlist';
 import { nanoid } from 'nanoid';
 import FilterContacts from './filter';
 import Title from './title';
+import { saveDataForm, getDataPrev, saveData} from "./api";
+
 function getRandomHexColor() {
   return `#${Math.floor((0.2+0.5*Math.random()) * 16777215).toString(16)}`;
 }
