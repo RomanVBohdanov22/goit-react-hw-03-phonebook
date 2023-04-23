@@ -68,12 +68,13 @@ export class App extends Component {
 
   render() {
     const { contacts, filter } = this.state;
+    /*contacts={contacts}*/ 
     const {onFormSubmit, onSearchContact, deleteContact} = this;
     return (
       <div style={{ ...appStyles, backgroundColor: getRandomHexColor() }}>
         <div>
           <Title title={'Phonebook'} />
-          <ContactForm onFormSubmit={onFormSubmit} contacts={contacts} />
+          <ContactForm onFormSubmit={onFormSubmit} />
           <Title title={'Contacts'} />
           <FilterContacts
             filter={filter}
