@@ -5,10 +5,10 @@ import ContactList from './contactlist';
 import { nanoid } from 'nanoid';
 import FilterContacts from './filter';
 import Title from './title';
-import {getData, saveData} from "./api"; //saveDataForm
+import { getData, saveData } from './api'; //saveDataForm
 
 function getRandomHexColor() {
-  return `#${Math.floor((0.2+0.5*Math.random()) * 16777215).toString(16)}`;
+  return `#${Math.floor((0.2 + 0.5 * Math.random()) * 16777215).toString(16)}`;
 }
 
 const appStyles = {
@@ -26,15 +26,15 @@ export class App extends Component {
     contacts: [],
     filter: '',
   };
-  componentDidMount() { 
+  componentDidMount() {
     const contacts = getData();
-    this.setState({contacts});
+    this.setState({ contacts });
   }
-  componentDidUpdate(prevProps, prevState) { 
-    if (prevState.contacts !== this.state.contacts) { 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.contacts !== this.state.contacts) {
       saveData(this.state.contacts);
-    };
-}
+    }
+  }
   // methods
   onFormSubmit = ({ name, number }) => {
     const contact = {
@@ -42,12 +42,15 @@ export class App extends Component {
       name,
       number,
     };
-    
-    if (this.state.contacts.some(contact => contact.name === name || contact.number === number))
-    {       
+
+    if (
+      this.state.contacts.some(
+        contact => contact.name === name || contact.number === number
+      )
+    ) {
       Notiflix.Notify.failure('This contact is already exists');
       return;
-      }  
+    }
     this.setState(({ contacts }) => ({
       contacts: [contact, ...contacts],
     }));
@@ -65,25 +68,24 @@ export class App extends Component {
     Notiflix.Notify.info(`Succesfully removed ${name} from your contacts`);
   };
 
-
   render() {
     const { contacts, filter } = this.state;
-    /*contacts={contacts}*/ 
-    const {onFormSubmit, onSearchContact, deleteContact} = this;
+    const filteredContacts = contacts.filter(contact =>
+      contact.name.toLowerCase().includes(filter.toLowerCase())
+    );
+
+    const { onFormSubmit, onSearchContact, deleteContact } = this;
+
     return (
       <div style={{ ...appStyles, backgroundColor: getRandomHexColor() }}>
         <div>
           <Title title={'Phonebook'} />
           <ContactForm onFormSubmit={onFormSubmit} />
           <Title title={'Contacts'} />
-          <FilterContacts
-            filter={filter}
-            onSearchContact={onSearchContact}
-          />
+          <FilterContacts filter={filter} onSearchContact={onSearchContact} />
           <ContactList
-            contacts={contacts}
+            contacts={filteredContacts}
             deleteContact={deleteContact}
-            filter={filter}
           />
         </div>
       </div>

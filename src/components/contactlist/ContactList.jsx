@@ -1,27 +1,21 @@
 import PropTypes from 'prop-types';
 import '../contactlist/ContactList.css';
-const ContactList = ({ contacts, deleteContact, filter }) => {
-  let filteredContacts = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(filter.toLowerCase())
-  );
-    return (
-      <ul className="contactsList">
-            {filteredContacts.map(contact => {
-                const {id, name, number } = contact;
-          return (
-            <li key={id}>
-              <p>{name}</p>
-              <p>{number}</p>
-              <button
-                type="button"
-                onClick={() => deleteContact(id, name)}
-              >
-                Remove contact
-              </button>
-            </li>
-          );
-        })}
-      </ul>
+const ContactList = ({ contacts, deleteContact }) => {
+  return (
+    <ul className="contactsList">
+      {contacts.map(contact => {
+        const { id, name, number } = contact;
+        return (
+          <li key={id}>
+            <p>{name}</p>
+            <p>{number}</p>
+            <button type="button" onClick={() => deleteContact(id, name)}>
+              Remove contact
+            </button>
+          </li>
+        );
+      })}
+    </ul>
   );
 };
 
@@ -35,5 +29,4 @@ ContactList.propTypes = {
       number: PropTypes.string,
     }).isRequired
   ).isRequired,
-  filter: PropTypes.string.isRequired,
 };
